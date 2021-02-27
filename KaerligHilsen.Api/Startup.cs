@@ -1,4 +1,7 @@
 using KaerligHilsen.Api.Database;
+using KaerligHilsen.Api.Features.Orders;
+using KaerligHilsen.Api.Features.Orders.Mutations;
+using KaerligHilsen.Api.Features.Orders.Queries;
 using KaerligHilsen.Api.Features.Products;
 using KaerligHilsen.Api.Features.Products.Query;
 using Microsoft.AspNetCore.Builder;
@@ -23,11 +26,16 @@ namespace KaerligHilsen.Api
         public void ConfigureServices(IServiceCollection services)
             => services
                 .AddTransient<IProductsRepository, ProductsRepository>()
+                .AddTransient<IOrderRepository, OrderRepository>()
                 .AddDbContextPool<ApplicationDbContext>(
                     options => options.UseSqlite("Data Source=kaerlighilsen.db"))
                 .AddGraphQLServer()
-                .AddQueryType<ProductsQuery>()
-                .AddMutationType<ProductsMutation>()
+                .AddQueryType(d => d.Name("Query"))
+                .AddTypeExtension<ProductsQuery>()
+                .AddTypeExtension<OrdersQuery>()
+                .AddMutationType(d => d.Name("Mutation"))
+                .AddTypeExtension<ProductsMutation>()
+                .AddTypeExtension<OrderMutation>()
                 .AddDataLoader<ProductByIdDataLoader>();
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

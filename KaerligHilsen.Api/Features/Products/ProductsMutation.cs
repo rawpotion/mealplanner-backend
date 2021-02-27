@@ -1,10 +1,12 @@
 using System;
 using System.Threading.Tasks;
 using HotChocolate;
+using HotChocolate.Types;
 using KaerligHilsen.Api.Features.Products.Models;
 
 namespace KaerligHilsen.Api.Features.Products
 {
+    [ExtendObjectType(Name = "Mutation")]
     public class ProductsMutation
     {
         public async Task<AddProductPayload> AddProductAsync(
