@@ -10,6 +10,7 @@ namespace KaerligHilsen.Api.Features.Products.Models
         public Guid Id { get; init; }
         public string Name { get; init; }
         public string Description { get; init; }
+        public long Price { get; init; }
         public DateTime Begins { get; init; }
         public DateTime Expires { get; init; }
         public long Quantity { get; init; }

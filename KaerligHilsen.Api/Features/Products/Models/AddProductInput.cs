@@ -5,6 +5,7 @@ namespace KaerligHilsen.Api.Features.Products.Models
     public record AddProductInput(
         string Name,
         string Description,
+        long Price,
         DateTime Begins,
         DateTime Expires,
         long Quantity,
