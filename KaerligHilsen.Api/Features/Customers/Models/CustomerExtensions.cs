@@ -1,3 +1,4 @@
+using System;
 using System.Security.Cryptography;
 
 namespace KaerligHilsen.Api.Features.Customers.Models
@@ -23,5 +24,15 @@ namespace KaerligHilsen.Api.Features.Customers.Models
                 from.ZipCode,
                 from.PhoneNumber,
                 from.Email);
+                
+         public static Customer ToCustomer(this AddCustomerInput from, Guid id)
+                    => new(
+                        id,
+                        from.FullName,
+                        from.Address,
+                        from.ZipCode,
+                        from.PhoneNumber,
+                        from.Email);
+                
     }
 }

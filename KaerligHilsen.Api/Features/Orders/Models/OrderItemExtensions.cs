@@ -9,13 +9,14 @@ namespace KaerligHilsen.Api.Features.Orders.Models
             => new()
             {
                 Id = id,
-                Product = from.Product.ToProductDto(),
+                ProductId = from.ProductId,
                 Quantity = from.Quantity
             };
 
         public static OrderItem ToOrderItem(this OrderItemDto from)
             => new(
                 from.Quantity,
+                from.ProductId,
                 from.Product.ToProduct());
     }
 }

@@ -5,5 +5,6 @@ namespace KaerligHilsen.Api.Features.Orders.Models
 {
     public record OrderItem(
         long Quantity,
-        Guid ProductId);
+        Guid ProductId,
+        Product Product);
 }

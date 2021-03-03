@@ -9,8 +9,10 @@ namespace KaerligHilsen.Api.Features.Orders.Models
         public static Order ToOrder(this AddOrderInput from, Guid id, OrderStatus status)
             => new(
                 id,
-                from.Customer,
-                from.Items,
+                from.Customer.ToCustomer(Guid.NewGuid()),
+                from.Items
+                    .Select(i => i.ToOrderItem())
+                    .ToList(),
                 status);
 
         public static OrderDto ToOrderDto(this Order from)
@@ -34,5 +36,11 @@ namespace KaerligHilsen.Api.Features.Orders.Models
                     .Select(i => i.ToOrderItem())
                     .ToList(),
                 from.OrderStatus);
+
+        public static OrderItem ToOrderItem(this AddOrderItemInput from)
+            => new(
+                from.Quantity,
+                from.ProductId,
+                null);
     }
 }

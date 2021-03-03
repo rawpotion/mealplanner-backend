@@ -5,7 +5,7 @@ namespace KaerligHilsen.Api.Features.Products.Models
     public static class ProductExtensions
     {
         public static Product ToProduct(this ProductDto from)
-            => new Product(
+            => new (
                 from.Id,
                 from.Name,
                 from.Description,
