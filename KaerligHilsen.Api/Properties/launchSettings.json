@@ -12,6 +12,16 @@
         "ASPNETCORE_Kestrel__Certificates__Default__Password": "Blizzar1",
         "ASPNETCORE_Kestrel__Certificates__Default__Path": "/home/hermansen/.aspnet/https/localhost.pfx"
       }
+    },
+   "KaerligHilsen.Api.Docker": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "launchBrowser": false,
+      "launchUrl": "swagger",
+      "applicationUrl": "http://0.0.0.0:80",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     }
   }
 }
