@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace KaerligHilsen.Api
+namespace Mealplanner.Api
 {
     public class Program
     {

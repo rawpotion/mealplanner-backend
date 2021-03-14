@@ -1,9 +1,4 @@
-using KaerligHilsen.Api.Database;
-using KaerligHilsen.Api.Features.Orders;
-using KaerligHilsen.Api.Features.Orders.Mutations;
-using KaerligHilsen.Api.Features.Orders.Queries;
-using KaerligHilsen.Api.Features.Products;
-using KaerligHilsen.Api.Features.Products.Query;
+using Mealplanner.Api.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace KaerligHilsen.Api
+namespace Mealplanner.Api
 {
     public class Startup
     {
@@ -26,10 +21,8 @@ namespace KaerligHilsen.Api
         public void ConfigureServices(IServiceCollection services)
             => services
                 .AddControllers().Services
-                .AddTransient<IProductsRepository, ProductsRepository>()
-                .AddTransient<IOrderRepository, OrderRepository>()
                 .AddDbContextPool<ApplicationDbContext>(
-                    options => options.UseSqlite("Data Source=kaerlighilsen.db"))
+                    options => options.UseSqlite("Data Source=mealplanner.db"))
                 .AddCors(options => options
                     .AddDefaultPolicy(policy
                         => policy
@@ -39,12 +32,7 @@ namespace KaerligHilsen.Api
                             .AllowAnyMethod()))
                 .AddGraphQLServer()
                 .AddQueryType(d => d.Name("Query"))
-                .AddTypeExtension<ProductsQuery>()
-                .AddTypeExtension<OrdersQuery>()
-                .AddMutationType(d => d.Name("Mutation"))
-                .AddTypeExtension<ProductsMutation>()
-                .AddTypeExtension<OrderMutation>()
-                .AddDataLoader<ProductByIdDataLoader>();
+                .AddMutationType(d => d.Name("Mutation"));
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
