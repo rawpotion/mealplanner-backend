@@ -25,10 +25,18 @@ namespace KaerligHilsen.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
             => services
+                .AddControllers().Services
                 .AddTransient<IProductsRepository, ProductsRepository>()
                 .AddTransient<IOrderRepository, OrderRepository>()
                 .AddDbContextPool<ApplicationDbContext>(
                     options => options.UseSqlite("Data Source=kaerlighilsen.db"))
+                .AddCors(options => options
+                    .AddDefaultPolicy(policy
+                        => policy
+                            .WithOrigins("http://localhost")
+                            .AllowCredentials()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()))
                 .AddGraphQLServer()
                 .AddQueryType(d => d.Name("Query"))
                 .AddTypeExtension<ProductsQuery>()
@@ -50,7 +58,12 @@ namespace KaerligHilsen.Api
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints => { endpoints.MapGraphQL(); });
+            app.UseCors(options => options.WithOrigins("http://localhost:3000", "http://localhost").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapGraphQL();
+            });
         }
     }
 }

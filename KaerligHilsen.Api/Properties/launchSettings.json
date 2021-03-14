@@ -1,13 +1,5 @@
 ﻿{
   "$schema": "http://json.schemastore.org/launchsettings.json",
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:63731",
-      "sslPort": 44336
-    }
-  },
   "profiles": {
    "KaerligHilsen.Api": {
       "commandName": "Project",
@@ -15,6 +7,18 @@
       "launchBrowser": false,
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:5001;http://localhost:5000",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_Kestrel__Certificates__Default__Password": "Blizzar1",
+        "ASPNETCORE_Kestrel__Certificates__Default__Path": "/home/hermansen/.aspnet/https/localhost.pfx"
+      }
+    },
+   "KaerligHilsen.Api.Docker": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "launchBrowser": false,
+      "launchUrl": "swagger",
+      "applicationUrl": "http://0.0.0.0:80",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
